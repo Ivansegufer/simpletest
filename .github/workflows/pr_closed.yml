@@ -1,0 +1,15 @@
+name: La mera verdura cerrada
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    types: [ "closed" ]
+jobs:
+
+  validation:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Despedida"
+        run: echo "Cerrado con exitososos"

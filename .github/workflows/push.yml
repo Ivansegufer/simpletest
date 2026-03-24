@@ -1,0 +1,14 @@
+name: La mera verdura push
+
+on:
+  push:
+    branches: [ "infra" ]
+jobs:
+
+  validation:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Hola bebe"
+        run: echo "Se pusheo algo, agria"

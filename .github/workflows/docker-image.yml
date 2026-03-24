@@ -1,12 +1,9 @@
 name: La mera verdura
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  schedule:
-    - cron: '*/5 * * * *'
+    types: [ "opened" ]
   workflow_dispatch:
     inputs:
       logLevel:
@@ -28,7 +25,7 @@ jobs:
         run: pwd
       - name: "Who am I?"
         run: whoami
-      - name: "Creating lockfile"
+      - name: "Creating lock madafaking file"
         run: echo "Pajaringas si" > lockfile
       - name: "List all the files"
         run: ls -la
