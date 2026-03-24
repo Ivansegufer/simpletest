@@ -1,12 +1,9 @@
 name: La mera verdura
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  schedule:
-    - cron: '*/5 * * * *'
+    types: [ "opened" ]
   workflow_dispatch:
     inputs:
       logLevel:
