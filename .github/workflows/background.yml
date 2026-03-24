@@ -1,0 +1,17 @@
+name: La mera verdura background
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+
+  check:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Check files"
+        run: echo "Checking files"
+      - name: "Result"
+        run: echo "OK"
