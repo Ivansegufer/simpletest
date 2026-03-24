@@ -1,8 +1,9 @@
 .vs/
 .vscode/
-bin/
-obj/
 .git/
 .gitignore
 Dockerfile*
 docker-compose*
+simpletest.Api.Tests/
+simpletest.Api/bin/
+simpletest.Api/obj/

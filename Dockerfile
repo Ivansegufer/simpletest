@@ -4,11 +4,11 @@ FROM mcr.microsoft.com/dotnet/sdk:${ASPNET_VERSION} AS build
 
 WORKDIR /src
 
-COPY *.csproj ./
-RUN dotnet restore
+COPY simpletest.Api/simpletest.Api.csproj simpletest.Api/
+RUN dotnet restore simpletest.Api/simpletest.Api.csproj
 
-COPY . .
-RUN dotnet publish -c Release -o /app/publish --no-restore
+COPY simpletest.Api/ simpletest.Api/
+RUN dotnet publish simpletest.Api/simpletest.Api.csproj -c Release -o /app/publish --no-restore
 
 FROM mcr.microsoft.com/dotnet/aspnet:${ASPNET_VERSION} AS runtime
 
@@ -18,4 +18,4 @@ COPY --from=build /app/publish .
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
-ENTRYPOINT ["dotnet", "simpletest.dll"]
+ENTRYPOINT ["dotnet", "simpletest.Api.dll"]

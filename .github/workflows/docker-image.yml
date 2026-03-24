@@ -18,6 +18,19 @@ jobs:
         run: pwd
       - name: "Who am I?"
         run: whoami
+      - name: "Create lock file"
+        run: touch lockfile
       - name: "List all the files"
+        run: ls -la
+  
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "List all the files before checkout"
+        run: ls -la
+      - uses: actions/checkout@v4
+
+      - name: "List all the files after checkout"
         run: ls -la
 
