@@ -24,6 +24,7 @@ jobs:
         run: ls -la
   
   check:
+    needs: greeting
     runs-on: ubuntu-latest
 
     steps:
