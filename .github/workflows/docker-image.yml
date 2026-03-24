@@ -5,6 +5,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  schedule:
+    - cron: '*/5 * * * *'
 
 jobs:
 
@@ -13,5 +15,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print greeting
-      run: echo "Hello, world"
+      - name: Checking out
+        uses: actions/checkout@v6
+      - name: "Where am I?"
+        run: pwd
+      - name: "Who am I?"
+        run: whoami
+      - name: "Creating lockfile"
+        run: echo "Pajaringas si" > lockfile
+      - name: "List all the files"
+        run: ls -la
+
+      - uses: actions/upload-artifact@v6
+        with:
+          name: lockmadafakingfile
+          path: lockfile
+  
+  check:
+    needs: greeting
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: lockmadafakingfile
+      - name: "List all the files before checkout"
+        run: ls -la
+      - uses: actions/checkout@v6
+
+      - name: "List all the files after checkout"
+        run: ls -la
+

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace simpletest.Controllers
+namespace simpletest.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
