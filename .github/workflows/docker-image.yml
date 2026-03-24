@@ -18,16 +18,23 @@ jobs:
         run: pwd
       - name: "Who am I?"
         run: whoami
-      - name: "Create lock file"
-        run: touch lockfile
+      - run: touch lockfile
       - name: "List all the files"
         run: ls -la
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lockmadafakingfile
+          path: lockfile.lock
   
   check:
     needs: greeting
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: lockmadafakingfile
       - name: "List all the files before checkout"
         run: ls -la
       - uses: actions/checkout@v4
