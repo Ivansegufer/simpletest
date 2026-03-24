@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checking out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: "Where am I?"
         run: pwd
       - name: "Who am I?"
@@ -23,7 +23,7 @@ jobs:
       - name: "List all the files"
         run: ls -la
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: lockmadafakingfile
           path: lockfile
@@ -33,12 +33,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v6
         with:
           name: lockmadafakingfile
       - name: "List all the files before checkout"
         run: ls -la
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: "List all the files after checkout"
         run: ls -la
