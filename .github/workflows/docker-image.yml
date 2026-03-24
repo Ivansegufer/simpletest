@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checking out
+        uses: actions/checkout@v4
       - name: "Where am I?"
         run: pwd
       - name: "Who am I?"
@@ -25,7 +26,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: lockmadafakingfile
-          path: lockfile.lock
+          path: lockfile
   
   check:
     needs: greeting
