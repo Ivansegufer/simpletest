@@ -1,0 +1,54 @@
+name: Build & Test
+
+on:
+  pull_request:
+    branches: [ "develop", "staging", "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Upload artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: binary
+        path: bin
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        iteration: [1, 2, 3]
+
+    steps:
+    - name: Print iteration
+      run: echo '${{ matrix.iteration }}'
+    - name: Print ref
+      run: |
+        echo 'Ref: ${{ github.ref }}'
+        echo 'Ref name: ${{ github.ref_name }}'
+        echo 'Ref type: ${{ github.ref_type }}'
+        echo 'Ref protected: ${{ github.ref_protected }}'
+        echo 'Base ref: ${{ github.ref }}'
+    - name: Checkout
+      uses: actions/checkout@v6
+    - name: Download artifact
+      uses: actions/download-artifact@v6
+      with:
+        name: binary
+    - name: Test
+      run: dotnet test --no-build --verbosity normal

@@ -10,5 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: "Hola bebe"
-        run: echo "Se pusheo algo, agria"
+    - name: Print ref
+      run: |
+        echo 'Ref: ${{ github.ref }}'
+        echo 'Ref name: ${{ github.ref_name }}'
+        echo 'Ref type: ${{ github.ref_type }}'
+        echo 'Ref protected: ${{ github.ref_protected }}'
+        echo 'Base ref: ${{ github.ref }}'
