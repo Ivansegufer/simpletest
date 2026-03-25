@@ -1,4 +1,4 @@
-name: La mera verdura
+name: La mera verdura webhook
 
 on:
     repository_dispatch:
