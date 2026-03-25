@@ -11,4 +11,4 @@ jobs:
             - name: Doble echo
               run: | 
                 echo "Event type: ${{ github.event.action }}"
-                echo "Payload value ${{ github.event.client_payload.value }}"
+                echo "Payload value: ${{ github.event.client_payload.value }}"
