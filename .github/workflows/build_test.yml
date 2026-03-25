@@ -27,7 +27,7 @@ jobs:
         path: bin
 
   test:
-
+    needs: build
     runs-on: ubuntu-latest
 
     strategy:
