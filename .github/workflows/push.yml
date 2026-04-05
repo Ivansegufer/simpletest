@@ -4,11 +4,8 @@ on:
   push:
     branches: [ "infra", "infra2" ]
 jobs:
-
   validation:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Print ref
       run: |
@@ -25,6 +22,7 @@ jobs:
       run: echo "Infra 2222"
   
   infra2-validation:
+    needs: validation
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/infra2'
     steps:
