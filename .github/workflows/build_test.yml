@@ -24,7 +24,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: binary
-        path: bin
+        path: simpletest.Api/bin
 
   test:
     needs: build
