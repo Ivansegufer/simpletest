@@ -1,14 +1,31 @@
 name: La mera verdura push
+run-name: Push by ${{ github.actor }} on ${{ github.ref_name }}
 
 on:
   push:
-    branches: [ "infra" ]
+    branches: [ "infra", "infra2" ]
 jobs:
-
   validation:
-
     runs-on: ubuntu-latest
-
     steps:
-      - name: "Hola bebe"
-        run: echo "Se pusheo algo, agria"
+    - name: Print ref
+      run: |
+        echo 'Ref: ${{ github.ref }}'
+        echo 'Ref name: ${{ github.ref_name }}'
+        echo 'Ref type: ${{ github.ref_type }}'
+        echo 'Ref protected: ${{ github.ref_protected }}'
+        echo 'Base ref: ${{ github.ref }}'
+    - name: Print if its infra
+      if: github.ref == 'refs/heads/infra'
+      run: echo "Infra"
+    - name: Print if its infra2
+      if: github.ref == 'refs/heads/infra2'
+      run: echo "Infra 2222"
+  
+  infra2-validation:
+    needs: validation
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/infra2'
+    steps:
+    - name: Checking
+      run: echo "Checking infra 2..."
