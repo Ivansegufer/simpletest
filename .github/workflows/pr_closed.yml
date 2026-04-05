@@ -1,6 +1,7 @@
 name: La mera verdura cerrada
 
 on:
+  pull_request_review:
   pull_request:
     branches: [ "main" ]
     types: [ "closed" ]
