@@ -34,6 +34,9 @@ jobs:
       matrix:
         os: [ 'ubuntu-latest', 'windows-latest' ]
         iteration: [1, 2, 3]
+        exclude:
+          - os: 'windows-latest'
+            iteration: 3
 
     steps:
     - name: Print iteration
